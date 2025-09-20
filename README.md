@@ -85,12 +85,19 @@ Our design ensures **fast results, minimal storage overhead, and batch scalabili
 
 ## 📂 Repo Structure (planned)
 ├── app/ # Backend code
+
 │ ├── api/ # Flask/FastAPI routes
+
 │ ├── omr/ # OMR detection + processing
+
 │ └── utils/ # Helpers (PDF split, overlay)
+
 ├── tests/ # Sample test cases
+
 ├── docs/ # Documentation
+
 ├── requirements.txt # Python dependencies
+
 ├── README.md # Project overview (this file)
 
 yaml
