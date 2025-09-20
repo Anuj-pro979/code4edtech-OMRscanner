@@ -56,3 +56,47 @@ Supports both **mobile photo uploads** and **bulk scanned PDFs** with <0.5% erro
 - Saves **days of manual work**, gives **instant student feedback**.  
 
 ---
+
+
+
+
+flowchart TD
+    A[Student takes OMR photo] --> B[Upload photo via web/mobile interface]
+    B --> C[Server receives image]
+    C --> D[Align image to template]
+    D --> E[Extract bubble ROIs based on template]
+    E --> F[Check pixel intensity → filled/unfilled]
+    F --> G[Map answers to JSON schema]
+    G --> H[Compute per-subject & total scores]
+    H --> I[Store JSON result in database]
+    I --> J[Return result to student/dashboard]
+    J --> K[Optional: Overlay image stored for audit]
+
+
+
+
+output 
+
+{
+  "student_id": "12345",
+  "exam_version": "SetA",
+  "answers": {
+    "Subject1": [1,3,2,4,0,1,2,3,4,1,0,2,3,1,4,2,0,3,1,2],
+    "Subject2": [0,1,3,2,1,4,0,2,3,1,2,0,4,1,3,2,1,0,4,3],
+    "Subject3": [1,2,0,3,4,1,2,0,3,4,1,2,0,3,4,1,2,0,3,4],
+    "Subject4": [2,3,1,0,4,2,3,1,0,4,2,3,1,0,4,2,3,1,0,4],
+    "Subject5": [0,2,3,1,4,0,2,3,1,4,0,2,3,1,4,0,2,3,1,4]
+  },
+  "scores": {
+    "Subject1": 18,
+    "Subject2": 16,
+    "Subject3": 19,
+    "Subject4": 17,
+    "Subject5": 20
+  },
+  "total": 90,
+  "timestamp": "2025-09-20T12:34:56"
+}
+
+
+
