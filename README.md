@@ -59,7 +59,15 @@ Supports both **mobile photo uploads** and **bulk scanned PDFs** with <0.5% erro
 
 
 
+================================================================================================================
 
+Perfect! Here’s a **clear Mode 1 flow diagram** with response/output explained, suitable for documentation or GitHub README.
+
+---
+
+## **Mode 1: Real-time Mobile Upload Flow**
+
+```mermaid
 flowchart TD
     A[Student takes OMR photo] --> B[Upload photo via web/mobile interface]
     B --> C[Server receives image]
@@ -71,12 +79,13 @@ flowchart TD
     H --> I[Store JSON result in database]
     I --> J[Return result to student/dashboard]
     J --> K[Optional: Overlay image stored for audit]
+```
 
+---
 
+### **Response / Output JSON Example**
 
-
-output 
-
+```json
 {
   "student_id": "12345",
   "exam_version": "SetA",
@@ -97,6 +106,26 @@ output
   "total": 90,
   "timestamp": "2025-09-20T12:34:56"
 }
+```
 
+---
 
+### **Notes**
 
+* **Image Processing:** Minimal (alignment + crop + pixel intensity check).
+* **Latency:** \~0.2–0.4 sec per sheet (depending on server & image quality).
+* **Storage:** Only JSON + optional overlay (very small size).
+* **Dashboard:** Reads JSON → displays per-student scores, subject-wise marks, and aggregates.
+
+---
+
+If you want, I can **also draft a small Python prototype** for this Mode 1 pipeline that:
+
+* Takes a sample OMR image
+* Aligns it to template
+* Extracts answers
+* Outputs JSON in <0.5 sec
+
+This way you can demo live in the hackathon.
+
+Do you want me to do that next?
